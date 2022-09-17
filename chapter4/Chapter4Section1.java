@@ -10,16 +10,16 @@ public class Chapter4Section1 {
 			return "hello world!"; 
 		};
 		// Supplier interface의 abstract method 이름은 'get' 이다.
-		// System.out.println("Supplier1 : " + stringSupplier.get());
+		System.out.println("Supplier1 : " + stringSupplier.get());
 		
 		// 간단히
 		// 아래의 Supplier는 항상 "bye world!"라는 String을 반환해준다.
 		Supplier<String> stringSupplier2 = () -> "bye world!";
-		// System.out.println("Supplier2 : " + stringSupplier2.get());
-		
+		System.out.println("Supplier2 : " + stringSupplier2.get());
+// ===================================================================================================
 		// 호출을 할 때마다 랜덤한 double을 주는 Supplier를 만들어 보자
 		Supplier<Double> randomDoubleSupplier = () -> Math.random();
-		// System.out.println("Supplier3 : " + randomDoubleSupplier.get());
+		System.out.println("Supplier3 : " + randomDoubleSupplier.get());
 		
 		// count 만큼 randomDoubleSupplier를 호출
 		printRandomDoubles(randomDoubleSupplier, 5);
