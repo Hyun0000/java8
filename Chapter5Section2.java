@@ -11,6 +11,23 @@ public class Chapter5Section2 {
 	public static void main(String[] args) {
 		// [ClassName::instanceMethodName - '해당 클래스의 객체(인스턴스)'를 매개변수(parameter)로 넘겨 해당 객체(인스턴스)의 instance method 메서드를 실행해주는 함수]
 	
+		// 1.
+		// String class의 instance을 받아서 해당 instance 안에 있는 length를 호출해 주는 함수
+		Function<String, Integer> strLength = String::length;
+		System.out.println(strLength.apply("Hello world!")); // "Hello world!"가 'String class의 instance'인 것이다.
+		System.out.println(strLength.apply("bye world!"));	 // "bye world!"가 'String class의 instance'인 것이다.
+		
+		// 2.
+		// String을 받아서 해당 String의 .equals() 를 호출해서 또 다른 String과 비교해주는 함수
+		BiPredicate<String, String> strEquals = String::equals;
+		System.out.println(strEquals.test("hello", "apple")); // "apple"이 .equals()가 받을 String 이다.
+		/*
+		 * "hello"를 먼저 받아서 "hello"의 .equals() 를 호출
+		 * .equals()의 인자로 "apple"을 받는다.
+		 * 이런 모습 : "hello".equals("apple")
+		 */
+		System.out.println(strEquals.test("hello", "hello")); // 두 번째 "hello"가 .equals()가 받을 String 이다.
+// ===================================================================================================
 		List<User> users = new ArrayList<User>();
 		users.add(new User(3, "Alice"));
 		users.add(new User(1, "Charlie"));
