@@ -67,6 +67,15 @@ public class Chapter8Section7 {
 	    			Collectors.groupingBy(Order::getStatus, Collectors.mapping(
 	    					Order::getAmount, Collectors.reducing(BigDecimal.ZERO, BigDecimal::add)))
 	    		);
+	    /*
+	     * 내가 헷갈려서 순서 정리
+	     * 
+	     * 1. Collectors.groupingBy(Order::getStatus, ... 				--> OrderStatus 별로 각 order를 묶어라
+	     * 2. Collectors.mapping 										--> OrderStatus 별로 묶인 order에 mapping을 할 것이다.
+	     * 3. Order::getAmount 											--> OrderStatus 별로 묶인 order에서 amount만 가져와라
+	     * 4. Collectors.reducing(BigDecimal.ZERO, BigDecimal::add) 	--> OrderStatus 별 amount를 더해라(기본값은 '0'으로 설정)
+	     * 5. 그것을 Map<OrderStatus, BigDecimal> 형태로 반환해라
+	     */
 	    System.out.println(orderStatusToSumOfAmountMap);
 	}
 }
