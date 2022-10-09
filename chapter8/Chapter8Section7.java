@@ -12,6 +12,31 @@ import com.fastcampus.functionalprogramming.chapter8.model.Order.OrderStatus;
 
 public class Chapter8Section7 {
 	public static void main(String[] args) {
+		// 같은 일의 자리수끼리 묶어보자 --> 형태 : Map<일의 자리수, 같은 일의 자리수를 가지는 숫자들>
+		List<Integer> numbers = Arrays.asList(13, 2, 101, 203, 304, 402, 305, 349, 2312, 203);
+		Map<Integer, List<Integer>> unitDigitMap = numbers.stream()
+				.collect(Collectors.groupingBy(number -> number % 10));
+		System.out.println(unitDigitMap);
+// ===================================================================================================		
+		// Map<Integer, List<Integer>> 대신 Map<Integer, Set<Integer>>의 형태로 받아보자
+		List<Integer> numbers2 = Arrays.asList(13, 2, 101, 203, 304, 402, 305, 349, 2312, 203);
+		Map<Integer, Set<Integer>> unitDigitSet = numbers2.stream()
+				.collect(Collectors.groupingBy(number -> number % 10, Collectors.toSet()));
+		System.out.println(unitDigitSet); // 중복값인 203이 하나만 들어있다.
+// ===================================================================================================		
+		List<Integer> numbers3 = Arrays.asList(13, 2, 101, 203, 304, 402, 305, 349, 2312, 203);
+		Map<Integer, List<String>> unitDigitStrMap = numbers3.stream()
+				.collect(Collectors.groupingBy(number -> number % 10, Collectors.mapping(number -> "unit digit is " + number, Collectors.toList()))); 
+		System.out.println(unitDigitStrMap.get(1));
+		System.out.println(unitDigitStrMap.get(2));
+		System.out.println(unitDigitStrMap.get(3));
+		/*
+		 * 순서
+		 * 1. groupingBy method를 통해 List가 만들어진다.
+		 * 2. 그 List에 (number -> "unit digit is " + number)를 적용시킨 후
+		 * 3. Collectors.toList()를 통해 그것들을 담아 List<String> 형태로 반환한다. 
+		 */
+// ===================================================================================================
 		Order order1 = new Order()
 				.setId(1001L)
 				.setAmount(BigDecimal.valueOf(2000))
